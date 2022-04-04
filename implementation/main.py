@@ -1,28 +1,31 @@
 import json
+import os
 import shutil
 from models.SaveGame import SaveGame
 from models.Game import Game
-import datetime
+from services.GameService import *
+from services.OutputService import *
+from services.SaveGameService import *
+
+
 
 def main():
 
-    game = Game()
-    game.name = "Minecraft"
-    game.directory = "C:/Users/rafa_/AppData/Roaming/.minecraft/saves"
+    #ADD WITH TKINTER
+    minecraft = Game("Minecraft")
+    quake = Game("Quake")
+    addGame(minecraft)
+    addGame(quake)
 
-    save = SaveGame()
-    save.saveDate = datetime.date.today()
 
-    shutil.make_archive(game.name + " - save", "zip", game.directory)
 
-    with open("Minecraft - save.zip", 'rb') as file_data:
-        bytes_content =  file_data.read()
+    #saveGame = addSaveGame(game)
 
-    save.arrayBytes = bytes_content
+    outPutGame()
 
-    gameJson = game.convertObjToDict()
 
-    print(gameJson)
+
+
 
 
 
