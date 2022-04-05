@@ -7,11 +7,18 @@ from implementation.exceptions.AppException import AppException
 
 
 def outPutGame():
+
+    print("...verify if exist json file in your system")
     verifyExistJson()
     dictFromJson = readJsonFile()
+
+    print("...verify if exist game in json file")
     for gameDict in GAMES_DICT_IN_MEMORY:
-        verifiyExistGame(gameDict["name"], dictFromJson["games"])
+        if not (verifiyExistGame(gameDict["name"], dictFromJson["games"])):
+            continue
         dictFromJson["games"].append(gameDict)
+
+    print("...wrinting game in json file")
     writeJsonFile(dictFromJson)
     GAMES_DICT_IN_MEMORY.clear()
 
@@ -20,7 +27,8 @@ def verifiyExistGame(name, listDict):
     if (len(listDict) > 0):
         for dict in listDict:
             if (dict["name"] == name):
-                raise AppException("Já existe um jogo com o nome " + name)
+                return False
+                #raise AppException("Já existe um jogo com o nome " + name)
 
 #VERIFICA SE JÁ EXISTE UM JSON FILE
 def verifyExistJson():
@@ -28,6 +36,7 @@ def verifyExistJson():
         "games":[]
     }
     if not (os.path.isfile(getLocalDocuments() + GAMES_FILE_JSON)):
+        print("...creating a json file")
         with open(getLocalDocuments() + GAMES_FILE_JSON, "w") as outfile:
             json.dump(emptyDict, outfile)
 

@@ -2,9 +2,9 @@
 import uuid
 
 class Game:
-    def __init__(self, name):
-        self.id = str(uuid.uuid1())
-        self.name = name
+    def __init__(self):
+        self.id = None
+        self.name = None
 
     def convertObjToDict(self):
         dictObj = {
@@ -12,3 +12,6 @@ class Game:
             "name":self.name
         }
         return dictObj
+
+    def toString(self):
+        print("id = " + self.id + "\n" + "name = " + self.name + "\n")
