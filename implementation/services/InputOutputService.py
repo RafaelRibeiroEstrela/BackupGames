@@ -1,10 +1,6 @@
 import json
 import os
-import sys
-
-from implementation.configs import Variables
-
-
+from configs import Variables
 
 #LE UM ARQUIVO JSON
 def readJsonFile(dir):
@@ -26,4 +22,4 @@ def verifyExistFiles():
     if not os.path.isdir(Variables.LOCAL_GAMES_UPLOAD):
         os.makedirs(Variables.LOCAL_GAMES_UPLOAD)
         with open(Variables.LOCAL_GAMES_JSON_UPLOAD, "a") as outfile:
-            json.dump({"savegames": []}, outfile)
+            json.dump({"games": []}, outfile)

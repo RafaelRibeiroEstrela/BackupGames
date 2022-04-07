@@ -1,7 +1,5 @@
-import sys
-
-from implementation.configs import Variables
-from implementation.services import InputOutputService
+from configs import Variables
+from services import InputOutputService, SaveGameService
 
 
 def addGame(game):
@@ -10,6 +8,7 @@ def addGame(game):
     if search == None:
         dict["games"].append(game)
     InputOutputService.writeJsonFile(Variables.LOCAL_GAMES_JSON, dict)
+    print("game inseted!")
 
 def findGames():
     return InputOutputService.readJsonFile(Variables.LOCAL_GAMES_JSON)

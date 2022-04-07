@@ -1,8 +1,6 @@
-import json
+
 import os
 from enum import Enum
-
-from implementation.exceptions.AppException import AppException
 
 LOCAL_GAMES = os.path.expanduser("~") + r"\BackupGames\Local"
 LOCAL_GAMES_UPLOAD = os.path.expanduser("~") + r"\BackupGames\Upload"

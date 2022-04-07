@@ -1,36 +1,45 @@
 import datetime
 import os
-import shutil
+import sys
 import uuid
 import zipfile
+from zipfile import ZipFile
 
-from implementation.configs import Variables
-from implementation.models.SaveGame import SaveGame
-from implementation.services import GameService
+from configs import Variables
+from services import GameService, InputOutputService
 
 
 def saveAll():
-    dict = GameService.findGames()
-    if (dict["games"] == 0):
+    dictGames = GameService.findGames()
+    dictSave = InputOutputService.readJsonFile(Variables.LOCAL_GAMES_JSON_UPLOAD)
+    if (len(dictGames["games"]) == 0):
         print("Não foi encontrado nenhum backup de jogo")
         return
-    list = []
-    for index in dict["games"]:
+    for index in dictGames["games"]:
         saveGame = {
             "id":str(uuid.uuid1()),
-            "saveData":datetime.date.today()
+            "saveData":str(datetime.date.today()),
+            "bytes":str(getArrayBytes(index["directory"])),
+            "game":index
         }
-
-
-
-def addSaveGame(game):
-    saveGame = SaveGame()
-    saveGame.id = uuid.uuid1()
-    saveGame.saveDate = datetime.date.today()
-    saveGame.arrayBytes = getArrayBytes(game)
-    saveGame.game = game
-    return saveGame
-
+        dictSave["games"].append(saveGame)
+    InputOutputService.writeJsonFile(Variables.LOCAL_GAMES_JSON_UPLOAD, dictSave)
+    os.remove(Variables.LOCAL_GAMES_UPLOAD + r"\temp.zip")
+    print("game saved")
 
 def getArrayBytes(dir):
-    print("implementar")
+    with zipfile.ZipFile(Variables.LOCAL_GAMES_UPLOAD + r"\temp.zip", mode='w') as zipf:
+        len_dir_path = len(dir)
+        for root, _, files in os.walk(dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zipf.write(file_path, file_path[len_dir_path:])
+
+    with open(Variables.LOCAL_GAMES_UPLOAD + r"\temp.zip", 'rb') as file_data:
+        bytesContent = file_data.read()
+
+    return bytesContent
+
+
+
+
