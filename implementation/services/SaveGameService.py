@@ -3,6 +3,14 @@ import shutil
 import uuid
 
 from implementation.models.SaveGame import SaveGame
+from implementation.services import GameService
+
+
+def saveAll():
+
+    listObj = GameService.findGames()
+    for index in listObj:
+        getArrayBytes(index)
 
 
 def addSaveGame(game):
@@ -14,8 +22,9 @@ def addSaveGame(game):
     return saveGame
 
 
-def getArrayBytes(game):
-    shutil.make_archive(game.name + " - save", "zip", game.directory)
+def getArrayBytes(gameDict):
+    shutil.make_archive(base_name=gameDict["name"], format="zip", root_dir=gameDict["directory"])
+    shutil.make_archive()
 
     with open("Minecraft - save.zip", 'rb') as file_data:
         bytesContent = file_data.read()

@@ -1,18 +1,18 @@
-import json
-import os
-import shutil
 
-from implementation.services import GameService
-from models.SaveGame import SaveGame
-from models.Game import Game
-from services.OutputService import *
+
+from implementation.configs.Variables import Game
+from implementation.services import InputOutputService
 from services.SaveGameService import *
+from tkinter import filedialog
+from tkinter import *
 
 
 
 
 
 def main():
+
+    InputOutputService.verifyExistFiles()
 
     while(True):
         print(".................MENU.................\n\n")
@@ -45,45 +45,22 @@ def main():
 
     print("APP ENCERRADO")
 
-
-
-
-
-    #ADD WITH TKINTER
-    #minecraft = Game("Minecraft")
-    #quake = Game("Quake")
-    #addGame(minecraft)
-    #addGame(quake)
-
-
-
-    #saveGame = addSaveGame(game)
-
-    #outPutGame()
-
 def addGame():
     print("\n!. VOLTAR PARA MENU ANTERIOR")
-    name = input("Nome: ")
-    if (len(name) == 0 or name.isspace()):
-        print("É obrigatório preencher o jogo com o um nome válido")
-        addGame()
-    elif (name == "!"):
-        return
+    name = Game.MINECRAFT.value
+    directory = input("Diretorio: ")
 
-    game = Game()
-    game.id = uuid.uuid1()
-    game.name = name
+    game = {
+        "id":str(uuid.uuid1()),
+        "name":name,
+        "directory":directory
+    }
+
     GameService.addGame(game)
     print("game inseted!")
 
 def findGames():
-    listObj = GameService.findGames()
-    if (len(listObj) == 0):
-        print("Não foi encontrado nenhum jogo")
-        return
-
-    for index in listObj:
-        print(index.toString())
+    print(GameService.findGames())
 
 def findGameWithParameters():
     print("\n!. VOLTAR PARA MENU ANTERIOR")
@@ -93,19 +70,12 @@ def findGameWithParameters():
 
     if (subcomand == "1"):
         id = input("id: ")
-        game = GameService.findGameById(id)
-        if (game == None):
-            print("Não foi encontrado nenhum jogo")
-        else:
-            print(game.toString())
+        print(GameService.findGameById(id))
+
     elif (subcomand == "2"):
         name = input("Name: ")
-        listObj = GameService.findGameByName(name)
-        if (len(listObj) == 0):
-            print("Não foi encontrado nenhum jogo")
-        else:
-            for index in listObj:
-                print(index.toString())
+        print(GameService.findGameByName(name))
+
     elif (subcomand == "!"):
         return
 
@@ -124,7 +94,12 @@ def downloadSave():
     print("downloadSave")
 
 
-
+def verifyEntry(name):
+    if (len(name) == 0 or name.isspace()):
+        print("Não é aceito espaços em branco")
+        addGame()
+    elif (name == "!"):
+        return
 
 
 

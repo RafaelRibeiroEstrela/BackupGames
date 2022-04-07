@@ -1,19 +1,23 @@
-
+import json
 import os
+from enum import Enum
 
 from implementation.exceptions.AppException import AppException
 
+LOCAL_GAMES = os.path.expanduser("~") + r"\BackupGames\Local"
+LOCAL_GAMES_UPLOAD = os.path.expanduser("~") + r"\BackupGames\Upload"
 
-def getLocalDocuments():
-    LOCAL_DOCUMENTS = os.getenv("LOCAL_DOCUMENTS")
-    if (LOCAL_DOCUMENTS == None):
-        raise AppException("Não foi encontrado a variavel de ambiente ou valor LOCAL_DOCUMENTS")
 
-    return LOCAL_DOCUMENTS
+LOCAL_GAMES_JSON = os.path.expanduser("~") + r"\BackupGames\Local\LocalGamesJson.json"
+LOCAL_GAMES_JSON_UPLOAD = os.path.expanduser("~") + r"\BackupGames\Upload\LocalGamesJsonUpload.json"
 
-GAMES_FILE_JSON = "games_json.json"
+class Game(Enum):
+    MINECRAFT = "Minecraft"
+    CALL_OF_DUTY = "Call of Duty"
+    FIFA = "FIFA",
+    NEED_FOR_SPEED = "Need For Speed"
 
-GAMES_DICT_IN_MEMORY = []
+
 
 
 
