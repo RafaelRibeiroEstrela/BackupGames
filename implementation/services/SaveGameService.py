@@ -1,16 +1,26 @@
 import datetime
+import os
 import shutil
 import uuid
+import zipfile
 
+from implementation.configs import Variables
 from implementation.models.SaveGame import SaveGame
 from implementation.services import GameService
 
 
 def saveAll():
+    dict = GameService.findGames()
+    if (dict["games"] == 0):
+        print("Não foi encontrado nenhum backup de jogo")
+        return
+    list = []
+    for index in dict["games"]:
+        saveGame = {
+            "id":str(uuid.uuid1()),
+            "saveData":datetime.date.today()
+        }
 
-    listObj = GameService.findGames()
-    for index in listObj:
-        getArrayBytes(index)
 
 
 def addSaveGame(game):
@@ -22,11 +32,5 @@ def addSaveGame(game):
     return saveGame
 
 
-def getArrayBytes(gameDict):
-    shutil.make_archive(base_name=gameDict["name"], format="zip", root_dir=gameDict["directory"])
-    shutil.make_archive()
-
-    with open("Minecraft - save.zip", 'rb') as file_data:
-        bytesContent = file_data.read()
-
-    return bytesContent
+def getArrayBytes(dir):
+    print("implementar")

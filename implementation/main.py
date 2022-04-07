@@ -1,7 +1,7 @@
 
 
 from implementation.configs.Variables import Game
-from implementation.services import InputOutputService
+from implementation.services import InputOutputService, SaveGameService
 from services.SaveGameService import *
 from tkinter import filedialog
 from tkinter import *
@@ -47,15 +47,13 @@ def main():
 
 def addGame():
     print("\n!. VOLTAR PARA MENU ANTERIOR")
-    name = Game.MINECRAFT.value
+    name = Game.NEED_FOR_SPEED.value
     directory = input("Diretorio: ")
-
     game = {
         "id":str(uuid.uuid1()),
         "name":name,
         "directory":directory
     }
-
     GameService.addGame(game)
     print("game inseted!")
 
@@ -82,7 +80,7 @@ def findGameWithParameters():
     findGameWithParameters()
 
 def saveAll():
-    print("saveAll")
+    SaveGameService.getArrayBytes("C:/Users/rafaelestrela/Pictures")
 
 def saveGame():
     print("saveGame")
