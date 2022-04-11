@@ -1,5 +1,5 @@
-from configs import Variables
-from services import InputOutputService, SaveGameService
+from client.configs import Variables
+from client.services import InputOutputService
 
 
 def addGame(game):

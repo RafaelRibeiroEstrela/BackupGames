@@ -1,8 +1,11 @@
 import json
 import os
-from configs import Variables
+
 
 #LE UM ARQUIVO JSON
+from client.configs import Variables
+
+
 def readJsonFile(dir):
     with open(dir, "r") as inputFile:
         data = json.loads(inputFile.read())

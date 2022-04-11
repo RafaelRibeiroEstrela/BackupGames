@@ -5,8 +5,11 @@ import uuid
 import zipfile
 from zipfile import ZipFile
 
-from configs import Variables
-from services import GameService, InputOutputService
+
+
+
+from client.configs import Variables
+from client.services import GameService, InputOutputService
 
 
 def saveAll():
