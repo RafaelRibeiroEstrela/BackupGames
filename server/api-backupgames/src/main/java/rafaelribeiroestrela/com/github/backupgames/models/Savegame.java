@@ -1,6 +1,6 @@
 package rafaelribeiroestrela.com.github.backupgames.models;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,17 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "TB_SAVEGAME")
-public class SaveGame {
+public class Savegame {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_SAVEGAME")
 	private Long id;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "SAVE_DATE")
-	private LocalDate date;
+	private LocalDateTime dateTime;
 	
 	@Column(name = "ARRAY_BYTES")
 	private byte[] bytes;
@@ -31,14 +34,14 @@ public class SaveGame {
 	@JoinColumn(name = "ID_GAME")
 	private Game game;
 	
-	public SaveGame() {
+	public Savegame() {
 		
 	}
 
-	public SaveGame(Long id, LocalDate date, byte[] bytes, Game game) {
+	public Savegame(Long id, LocalDateTime date, byte[] bytes, Game game) {
 		super();
 		this.id = id;
-		this.date = date;
+		this.dateTime = date;
 		this.bytes = bytes;
 		this.game = game;
 	}
@@ -51,12 +54,12 @@ public class SaveGame {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public LocalDateTime getDateTime() {
+		return dateTime;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public byte[] getBytes() {
@@ -88,7 +91,7 @@ public class SaveGame {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SaveGame other = (SaveGame) obj;
+		Savegame other = (Savegame) obj;
 		return Objects.equals(id, other.id);
 	}
 	

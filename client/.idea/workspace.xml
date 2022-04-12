@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6cd26f98-1c6e-491c-856d-fd429527f253" name="Changes" comment="" />
+    <list default="true" id="75da7fba-a5be-4733-8d1b-b5fb0b9a2fd6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="27J5JcceirF1O0M3EvY5knsgdbc" />
+  <component name="ProjectId" id="27ftHnyJ1LwMYG6WzZpUKYxanlC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,8 +21,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="implementation" />
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="client" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -49,15 +42,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6cd26f98-1c6e-491c-856d-fd429527f253" name="Changes" comment="" />
-      <created>1649025277700</created>
+      <changelist id="75da7fba-a5be-4733-8d1b-b5fb0b9a2fd6" name="Changes" comment="" />
+      <created>1649722882658</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1649025277700</updated>
+      <updated>1649722882658</updated>
     </task>
     <servers />
   </component>
