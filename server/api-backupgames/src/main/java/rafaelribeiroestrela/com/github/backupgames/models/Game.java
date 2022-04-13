@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "TB_GAME")
@@ -18,6 +19,7 @@ public class Game {
 	@Column(name = "ID_GAME")
 	private Long id;
 	
+	@NotEmpty(message = "NAME GAME IS REQUIRED.")
 	@Column(name = "NAME_GAME")
 	private String name;
 	

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,9 +28,11 @@ public class Savegame {
 	@Column(name = "SAVE_DATE")
 	private LocalDateTime dateTime;
 	
+	@NotNull(message = "ARRAY BYTES IS REQUIRED.")
 	@Column(name = "ARRAY_BYTES")
 	private byte[] bytes;
 	
+	@NotNull(message = "GAME ID IS REQUIRED.")
 	@ManyToOne
 	@JoinColumn(name = "ID_GAME")
 	private Game game;
