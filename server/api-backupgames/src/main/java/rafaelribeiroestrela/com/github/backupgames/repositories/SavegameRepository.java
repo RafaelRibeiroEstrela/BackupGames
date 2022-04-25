@@ -12,7 +12,7 @@ public interface SavegameRepository extends JpaRepository<Savegame, Long>{
 	@Query("SELECT sv FROM Savegame sv WHERE sv.game.id = :id")
 	List<Savegame> findByGameId(Long id);
 	
-	@Query("SELECT MAX(sv) FROM Savegame sv WHERE sv.game.id = :id")
+	@Query("SELECT sv FROM Savegame sv WHERE sv.game.id = :id ORDER BY sv.dateTime DESC")
 	List<Savegame> findLastSaveGameByGameId(Long id);
 
 }
